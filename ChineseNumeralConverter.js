@@ -14,38 +14,16 @@
 
 		if (num === 0) return cnumlist[0];
 
-		if (num >= 10000) {
-			hundred = parseInt(num / 10000);
-			result += cnumlist[hundred] + ctenlist['10000'];
-			num -= hundred * 10000;
+		for (var tenIndex=10000;tenIndex>10;tenIndex=tenIndex/10) {
+			if (num >= tenIndex) {
+				carry = parseInt(num / tenIndex);
+				result += cnumlist[carry] + ctenlist[tenIndex];
+				num -= carry * tenIndex;
 
-			if (origin % 10000 < 1000 && origin > 10000) {
-				if (result[result.length - 1] != cnumlist[0]) {
-					result += cnumlist[0];
-				}
-			}
-		}
-
-		if (num >= 1000) {
-			hundred = parseInt(num / 1000);
-			result += cnumlist[hundred] + ctenlist['1000'];
-			num -= hundred * 1000;
-
-			if (origin % 1000 < 100 && origin > 1000) {
-				if (result[result.length - 1] != cnumlist[0]) {
-					result += cnumlist[0];
-				}
-			}
-		}
-
-		if (num >= 100) {
-			hundred = parseInt(num / 100);
-			result += cnumlist[hundred] + ctenlist['100'];
-			num -= hundred * 100;
-
-			if (origin % 100 < 10 && origin > 100) {
-				if (result[result.length - 1] != cnumlist[0]) {
-					result += cnumlist[0];
+				if (origin % tenIndex < (tenIndex / 10) && origin > tenIndex) {
+					if (result[result.length - 1] != cnumlist[0]) {
+						result += cnumlist[0];
+					}
 				}
 			}
 		}
