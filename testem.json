@@ -1,0 +1,7 @@
+{
+  "framework": "qunit",
+  "src_files": [
+    "ChineseNumeralConverter.js",
+    "ChineseNumeralConverter_test.js"
+  ]
+}
