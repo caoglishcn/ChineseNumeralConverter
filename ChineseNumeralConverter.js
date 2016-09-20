@@ -36,6 +36,8 @@
 		return result;
 	}
 
+	
+
 	converter.convert = function(num) {
 		
 		num = parseInt(num,10)

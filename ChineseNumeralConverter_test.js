@@ -177,3 +177,32 @@ QUnit.test("100000-999999", function(assert) {
 	expect ="九十九万九千九百九十九";
 	assert.equal(result,expect , expect);
 });
+
+QUnit.test("1,000,000-99,999,999", function(assert) {
+
+
+	result = cnc.convert(1000000);
+	expect ="一百万";
+	assert.equal(result,expect , expect);
+
+	result = cnc.convert(10000000);
+	expect ="一千万";
+	assert.equal(result,expect , expect);
+
+	result = cnc.convert(1100001);
+	expect ="一百十万零一";
+	assert.equal(result,expect , expect);
+
+
+	result = cnc.convert(1200115);
+	expect ="一百二十万零一百十五";
+	assert.equal(result,expect , expect);
+
+	result = cnc.convert(1500104);
+	expect ="一百五十万零一百零四";
+	assert.equal(result,expect , expect);
+
+	result = cnc.convert(99999999);
+	expect ="九千九百九十九万九千九百九十九";
+	assert.equal(result,expect , expect);
+});
