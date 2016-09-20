@@ -8,12 +8,10 @@
 	};
 	var converter = window.chineseNumeralconverter = {};
 
-	converter.convert = function(num) {
+	converter.processLessThan10k=function(num){
 		var origin = num;
 		var result = "";
-
-		if (num === 0) return cnumlist[0];
-
+	
 		for (var tenIndex=10000;tenIndex>10;tenIndex=tenIndex/10) {
 			if (num >= tenIndex) {
 				carry = parseInt(num / tenIndex);
@@ -33,12 +31,38 @@
 			result += (ten > 1 ? cnumlist[ten] : "") + cnumlist[10];
 			num -= ten * 10;
 		}
-
 		if (num === 0) return result;
-
 		result += cnumlist[num];
-
 		return result;
+	}
+
+	converter.convert = function(num) {
+		
+		num = parseInt(num,10)
+		if (num === 0) return cnumlist[0];
+		var chnNum="";
+
+
+		var changeNameSystemValueIn10k=10000;
+
+		var restNum= num%changeNameSystemValueIn10k;
+
+		var processNum=parseInt(num/changeNameSystemValueIn10k,10);
+
+		if(processNum>0){
+			var num1 = this.processLessThan10k(processNum);
+			chnNum= num1+ctenlist[changeNameSystemValueIn10k];
+			console.log(processNum,num1);
+		}
+
+		if(restNum>0){
+			var num2 = this.processLessThan10k(restNum);
+			if(processNum>0&&restNum*10<changeNameSystemValueIn10k){
+				chnNum += cnumlist[0];
+			}
+			chnNum +=  num2;
+		}
+		return chnNum;
 	}
 
 })(window);

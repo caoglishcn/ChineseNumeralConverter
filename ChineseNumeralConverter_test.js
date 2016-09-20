@@ -150,7 +150,30 @@ QUnit.test("10000-99999", function(assert) {
 	result = cnc.convert(99999);
 	expect ="九万九千九百九十九";
 	assert.equal(result,expect , expect);
+});
+
+QUnit.test("100000-999999", function(assert) {
 
 
-	
+	result = cnc.convert(100000);
+	expect ="十万";
+	assert.equal(result,expect , expect);
+
+
+	result = cnc.convert(100001);
+	expect ="十万零一";
+	assert.equal(result,expect , expect);
+
+
+	result = cnc.convert(100115);
+	expect ="十万零一百十五";
+	assert.equal(result,expect , expect);
+
+	result = cnc.convert(100104);
+	expect ="十万零一百零四";
+	assert.equal(result,expect , expect);
+
+	result = cnc.convert(999999);
+	expect ="九十九万九千九百九十九";
+	assert.equal(result,expect , expect);
 });
