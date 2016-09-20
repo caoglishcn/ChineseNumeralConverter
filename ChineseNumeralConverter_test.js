@@ -204,5 +204,24 @@ QUnit.test("1,000,000-99,999,999", function(assert) {
 
 	result = cnc.convert(99999999);
 	expect ="九千九百九十九万九千九百九十九";
+
 	assert.equal(result,expect , expect);
+});
+
+
+QUnit.test("100,000,000-9,999,999,999,999,999", function(assert) {
+	result = cnc.convert(100000000);
+	expect ="一亿";
+	assert.equal(result,expect , expect);
+
+
+	result = cnc.convert(110000131100001);
+	expect ="一百十万零一亿三千一百十万零一";
+	assert.equal(result,expect , expect);
+
+
+	result = cnc.convert(999999999999999);
+	expect ="九百九十九万九千九百九十九亿九千九百九十九万九千九百九十九";
+	assert.equal(result,expect , expect);
+
 });

@@ -36,27 +36,17 @@
 		return result;
 	}
 
-	
-
-	converter.convert = function(num) {
-		
-		num = parseInt(num,10)
-		if (num === 0) return cnumlist[0];
+	converter.processLessThan100m	 = function(num) {
 		var chnNum="";
-
-
 		var changeNameSystemValueIn10k=10000;
-
 		var restNum= num%changeNameSystemValueIn10k;
-
-		var processNum=parseInt(num/changeNameSystemValueIn10k,10);
+		var processNum=parseInt(~~(num/changeNameSystemValueIn10k),10);
 
 		if(processNum>0){
 			var num1 = this.processLessThan10k(processNum);
 			chnNum= num1+ctenlist[changeNameSystemValueIn10k];
-			console.log(processNum,num1);
+			
 		}
-
 		if(restNum>0){
 			var num2 = this.processLessThan10k(restNum);
 			if(processNum>0&&restNum*10<changeNameSystemValueIn10k){
@@ -64,7 +54,33 @@
 			}
 			chnNum +=  num2;
 		}
+
+
 		return chnNum;
 	}
 
+
+	converter.convert=function(num){
+		num = parseInt(num,10);
+		var chnNum="";
+		if (num === 0) return cnumlist[0];
+		var changeNameSystemValueIn100m=100000000;
+		var restNum= num%changeNameSystemValueIn100m;
+		var processNum=parseInt(~~(num/changeNameSystemValueIn100m),10);
+		console.log(num,changeNameSystemValueIn100m,num/changeNameSystemValueIn100m);
+		if(processNum>0){
+			var num1 = this.processLessThan100m(processNum);
+			chnNum= num1+ctenlist[changeNameSystemValueIn100m];
+			
+		}
+
+		if(restNum>0){
+			var num2 = this.processLessThan100m(restNum);
+			if(processNum>0&&restNum*10<changeNameSystemValueIn100m){
+				chnNum += cnumlist[0];
+			}
+			chnNum +=  num2;
+		}
+		return chnNum;
+	}
 })(window);
